@@ -8,33 +8,18 @@ const preguntas = [
         message: '¿Qué desea hacer?',
         choices: [
             {
-                value: '1',
-                name: `${'1.'.green} Crear tarea`
+                value: 1,
+                name: `${'1.'.green} Buscar ciudad`
             },
             {
-                value: '2',
-                name: `${'2.'.green} Listar tarea`
+                value: 2,
+                name: `${'2.'.green} Historial`
             },
             {
-                value: '3',
-                name: `${'3.'.green} Listar tareas completadas`
-            },
-            {
-                value: '4',
-                name: `${'4.'.green} Listar tareas pendientes`
-            },
-            {
-                value: '5',
-                name: `${'5.'.green} Completar tarea(s)`
-            },
-            {
-                value: '6',
-                name: `${'6.'.green} Borrar tarea`
-            },
-            {
-                value: '0',
+                value: 0,
                 name: `${'0.'.green} Salir`
             },
+           
         ]
     }
 ]
@@ -102,17 +87,14 @@ const mostrarListadoCheckList = async ( tareas = [] ) => {
     return ids;
 }   
 
-const listadoTareasBorrar = async ( tareas = [] ) => {
-    // {
-    //     value: tarea.id,
-    //     name: `${'1.'.green} Crear tarea`
-    // },
-    const choices = tareas.map( (tarea, i) => {
+const listarLugares = async ( lugares = [] ) => {
+
+    const choices = lugares.map( (lugar, i) => {
         const indice = `${i + 1}`.green;
 
         return {
-            value: tarea.id,
-            name: `${ indice } ${ tarea.desc }`
+            value: lugar.id,
+            name: `${ indice } ${ lugar.nombre }`
         }
     })
 
@@ -121,12 +103,11 @@ const listadoTareasBorrar = async ( tareas = [] ) => {
         name: '0.'.green + ' Cancelar'
     });
 
-    console.log(choices);
     const preguntas = [
         {
             type: 'list',
             name: 'id',
-            message: 'Borrar',
+            message: 'Seleccione lugar:',
             choices
         }
     ]
@@ -151,7 +132,7 @@ module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
-    listadoTareasBorrar,
+    listarLugares,
     confirmar,
     mostrarListadoCheckList
 }
